@@ -31,7 +31,7 @@ static Color colors[] = {
 /* curses attributes for the status bar */
 #define BAR_ATTR        (COLOR(BLUE) | A_NORMAL)
 /* status bar (command line option -s) position */
-#define BAR_POS         BAR_TOP /* BAR_BOTTOM, BAR_OFF */
+#define BAR_POS         BAR_OFF /* phf BAR_TOP, BAR_BOTTOM, BAR_OFF */
 /* whether status bar should be hidden if only one client exists */
 #define BAR_AUTOHIDE    true
 /* master width factor [0.1 .. 0.9] */
@@ -66,10 +66,21 @@ static Layout layouts[] = {
 	{ "[ ]", fullscreen },
 };
 
-#define MOD  CTRL('g')
+/* phf */
+#define MOD  CTRL('f')
 
 /* you can at most specifiy MAX_ARGS (3) number of arguments */
 static KeyBinding bindings[] = {
+	/* phf */
+	{ { MOD, 'f',          }, { focusnext,      { NULL }                    } },
+	{ { MOD, CTRL('f'),    }, { focusnext,      { NULL }                    } },
+	{ { MOD, 'w',          }, { create,         { NULL }                    } },
+	{ { MOD, CTRL('w'),    }, { create,         { NULL }                    } },
+	{ { MOD, 'e',          }, { create,         { NULL }                    } },
+	{ { MOD, CTRL('e'),    }, { create,         { NULL }                    } },
+	{ { MOD, 'r',          }, { killclient,     { NULL }                    } },
+	{ { MOD, CTRL('r'),    }, { killclient,     { NULL }                    } },
+	/* dvtm */
 	{ { MOD, 'c',          }, { create,         { NULL }                    } },
 	{ { MOD, 'C',          }, { create,         { NULL, NULL, "$CWD" }      } },
 	{ { MOD, 'x',          }, { killclient,     { NULL }                    } },
@@ -77,7 +88,7 @@ static KeyBinding bindings[] = {
 	{ { MOD, 'J',          }, { focusnextnm,    { NULL }                    } },
 	{ { MOD, 'K',          }, { focusprevnm,    { NULL }                    } },
 	{ { MOD, 'k',          }, { focusprev,      { NULL }                    } },
-	{ { MOD, 'f',          }, { setlayout,      { "[]=" }                   } },
+/*	{ { MOD, 'f',          }, { setlayout,      { "[]=" }                   } },*/
 	{ { MOD, 'g',          }, { setlayout,      { "+++" }                   } },
 	{ { MOD, 'b',          }, { setlayout,      { "TTT" }                   } },
 	{ { MOD, 'm',          }, { setlayout,      { "[ ]" }                   } },
@@ -105,8 +116,8 @@ static KeyBinding bindings[] = {
 	{ { MOD, 'q',          }, { quit,           { NULL }                    } },
 	{ { MOD, 'a',          }, { togglerunall,   { NULL }                    } },
 	{ { MOD, CTRL('L'),    }, { redraw,         { NULL }                    } },
-	{ { MOD, 'r',          }, { redraw,         { NULL }                    } },
-	{ { MOD, 'e',          }, { copymode,       { NULL }                    } },
+/*	{ { MOD, 'r',          }, { redraw,         { NULL }                    } },*/
+/*	{ { MOD, 'e',          }, { copymode,       { NULL }                    } },*/
 	{ { MOD, '/',          }, { copymode,       { "/" }                     } },
 	{ { MOD, 'p',          }, { paste,          { NULL }                    } },
 	{ { MOD, KEY_PPAGE,    }, { scrollback,     { "-1" }                    } },
