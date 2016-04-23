@@ -1,0 +1,11 @@
+hardstatus ignore
+startup_message off
+escape ^Ff
+bind f eval "focus"
+bind ^f eval "focus"
+bind e eval "split" "focus" "screen"
+bind ^e eval "split" "focus" "screen"
+bind w eval "split -v" "focus" "screen"
+bind ^w eval "split -v" "focus" "screen"
+bind r eval "kill" "remove"
+bind ^r eval "kill" "remove"
